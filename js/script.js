@@ -41,11 +41,13 @@ var app = new Vue({
       axios
         .get('app/server.php?genre=' + self.selected)
         .then(function(result) {
+          console.log(result.data)
           return self.songArray = result.data;
+
         })
         
-      
-    },
+        
+      },
 
   },
 

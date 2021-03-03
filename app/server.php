@@ -4,9 +4,8 @@
   include_once __DIR__ . '/functions/filterByGenre.php'; 
 
   header('Content-Type: application/json');
-
-  echo json_encode($albums); 
-
+  
+  echo json_encode($albums);
   
     
 ?>
