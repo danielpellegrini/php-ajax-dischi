@@ -5,7 +5,6 @@ var app = new Vue({
     songArray: [],
     genres: [],
     selected: '',
-    filtered: [],
 
   },
 
