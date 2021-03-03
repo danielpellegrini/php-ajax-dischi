@@ -23,6 +23,7 @@
 
       ?>
 
+      
        <div class="cd">
          <?php $image = $album['poster'] ?>
          <img src='<?php echo $image ?>' alt="<?php echo $album['title'] ?>">
@@ -30,6 +31,7 @@
          <span class="author"><?php echo $album['author'] ?></span>
          <span class="year"><?php echo $album['year'] ?></span>
        </div>
+       
 
        <?php
 
