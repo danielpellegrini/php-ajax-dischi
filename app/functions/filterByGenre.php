@@ -1,24 +1,17 @@
   <?php
 
-  $genreQuery = $_GET['genre'];
 
-  function filterByGenre($songsArray, $type){
-    $filtered = [];
-    foreach ($songsArray as $album) {
-      if($album['genre'] === $type  ){
-        $filtered[] = $album;
+      if (array_key_exists('genre', $_GET) && !empty($_GET['genre'])) {
+
+        $albums = array_filter($albums, function($disc) {
+          return (strpos($disc['genre'], $_GET['genre']) !== false);
+        });
+        if (count($albums) === 0) {
+          http_response_code(400);
+        }
       }
 
-    }
-    return $filtered;
-  }
-
-
-  if(!empty($genreQuery)){
-    $albums = filterByGenre($albums, $genreQuery);
-  }
-
-    echo json_encode($albums);
+    
     
     
 ?>

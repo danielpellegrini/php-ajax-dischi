@@ -9,19 +9,32 @@ var app = new Vue({
 
   },
 
-  methods: {
-    filterGenres: function() {
 
-      this.songArray.foreach((item) => {
+  mounted(){
+    const self = this;
 
-        if (!this.genres.includes(item.genre)) {
-          this.genres.push(item.genre);          
-        }
+    axios
+      .get('app/server.php')
+      .then(function(result) {
+        //push genre in genres array
+        result.data.forEach((item => {
 
-      });
-      
-      
-    },
+          if (!self.genres.includes(item.genre)) {
+            self.genres.push(item.genre);
+            
+          }
+          
+        }));
+
+        return self.songArray = result.data;
+          
+        });       
+    
+
+  },
+
+  
+  methods: {  
 
     getGenres: function() {
       const self = this;
@@ -29,25 +42,13 @@ var app = new Vue({
       axios
         .get('app/server.php?genre=' + self.selected)
         .then(function(result) {
-          self.songArray = result.data;
-          console.log(self.songArray);
+          return self.songArray = result.data;
         })
+        
       
-    }
-
+    },
 
   },
-
-  mounted(){
-    const self = this;
-
-    axios.get('app/server.php')
-    .then(function(resp) {
-      const songs = resp.data;
-      console.log(songs);
-      self.songArray = songs;
-    });
-  }
 
 });
 
